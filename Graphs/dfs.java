@@ -36,6 +36,28 @@ public class dfs {
         System.out.print("null");
     }
 
+    static void recuressiveDFS(int node, boolean vis[], ArrayList<ArrayList<Integer>> graph, ArrayList<Integer> ls) {
+
+        vis[node] = true;
+        ls.add(node);
+
+        for (Integer it : graph.get(node)) {
+            if (!vis[it]) {
+                vis[it] = true;
+                recuressiveDFS(it, vis, graph, ls);
+            }
+
+        }
+    }
+
+    static ArrayList<Integer> dfsOfGraph(int V, int start, ArrayList<ArrayList<Integer>> graph) {
+        boolean vis[] = new boolean[V + 1];
+        vis[start] = true;
+        ArrayList<Integer> ls = new ArrayList<>();
+        recuressiveDFS(start, vis, graph, ls);
+        return ls;
+    }
+
     public static void main(String[] args) {
         int V = 5;
         ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>(V);
@@ -50,7 +72,9 @@ public class dfs {
         addEdge(adj, 4, 2);
         addEdge(adj, 0, 3);
         printGraph(adj);
-        System.out.println("DFS traversel form node 3");
-        dfSearch(adj, 3);
+        System.out.println("DFS traversel form node 1");
+        dfSearch(adj, 1);
+        System.out.println("Recurssive DFS traversel form node 1");
+        System.out.println(dfsOfGraph(V, 1, adj));
     }
 }
