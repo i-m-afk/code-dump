@@ -14,27 +14,40 @@ public class dfs {
     }
 
     static void dfSearch(ArrayList<ArrayList<Integer>> graph, int start) {
-        int V = graph.size();
-        boolean isVisited[] = new boolean[V];
-        Stack<Integer> stk = new Stack<Integer>();
+    // Get the number of nodes in the graph
+    int V = graph.size();
 
-        stk.add(start);
-        isVisited[start] = true;
+    // Create a boolean array to mark the nodes that have been visited
+    boolean isVisited[] = new boolean[V];
 
-        while (!stk.isEmpty()) {
+    // Create a stack to store the nodes that need to be visited
+    Stack<Integer> stk = new Stack<Integer>();
 
-            int node = stk.pop();
-            System.out.print(node + "-->");
+    // Add the starting node to the stack and mark it as visited
+    stk.add(start);
+    isVisited[start] = true;
 
-            for (int j : graph.get(node)) {
-                if (!isVisited[j]) {
-                    stk.add(j);
-                    isVisited[j] = true;
-                }
+    // Continuously pop a node from the stack and visit its neighbors
+    while (!stk.isEmpty()) {
+        // Pop the top node from the stack
+        int node = stk.pop();
+        // Print the node
+        System.out.print(node + "-->");
+
+        // Visit all of the unvisited neighbors of the node
+        for (int j : graph.get(node)) {
+            if (!isVisited[j]) {
+                // Add the neighbor to the stack and mark it as visited
+                stk.add(j);
+                isVisited[j] = true;
             }
         }
-        System.out.print("null");
     }
+
+    // Print "null" after the traversal is complete
+    System.out.print("null");
+}
+
 
     static void recuressiveDFS(int node, boolean vis[], ArrayList<ArrayList<Integer>> graph, ArrayList<Integer> ls) {
 
