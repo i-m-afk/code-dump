@@ -87,7 +87,7 @@ public class dfs {
         printGraph(adj);
         System.out.println("DFS traversel form node 1");
         dfSearch(adj, 1);
-        System.out.println("Recurssive DFS traversel form node 1");
+        System.out.println("\nRecurssive DFS traversel form node 1");
         System.out.println(dfsOfGraph(V, 1, adj));
     }
 }
