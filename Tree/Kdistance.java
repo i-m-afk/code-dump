@@ -4,16 +4,14 @@ public class Kdistance extends Node {
         super(val);
     }
 
-    private static void printK(Node node, int k, int count) {
+    private static void printK(Node node, int k) {
         if (node == null)
             return;
-        if (count == k) {
+        if (k == 0) {
             System.out.print(node.val + " ");
-            return;
         }
-        count++;
-        printK(node.left, k, count);
-        printK(node.right, k, count);
+        printK(node.left, k - 1);
+        printK(node.right, k - 1);
     }
 
     // print nodes at k distance from the root
@@ -24,7 +22,7 @@ public class Kdistance extends Node {
         root.left.left = new Node(70);
         root.right.left = new Node(60);
         root.right.right = new Node(80);
-        printK(root, 2, 0);
+        printK(root, 2);
         /*
          * 30
          * / \
