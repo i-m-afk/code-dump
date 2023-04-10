@@ -29,8 +29,8 @@ public class MinStack {
         // 2. If value is greater than top, then push top in minStack
         // else push value in minStack
         mainStack.push(value);
-        if (!minStack.isEmpty() && minStack.top() < value)
-            minStack.push(minStack.top());
+        if (!minStack.isEmpty() && minStack.peek() < value)
+            minStack.push(minStack.peek());
         else
             minStack.push(value);
     }
