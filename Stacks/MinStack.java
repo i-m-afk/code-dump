@@ -37,6 +37,6 @@ public class MinStack {
 
     // returns minimum value in O(1)
     public int min() {
-        return minStack.top();
+        return minStack.peek();
     }
 }
