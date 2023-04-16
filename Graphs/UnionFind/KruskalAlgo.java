@@ -59,6 +59,7 @@ public class KruskalAlgo {
             int x = find(e.src);
             int y = find(e.dest);
             if (x != y) {
+                System.out.println(e.src + "---" + e.dest);
                 res += e.wt;
                 union(x, y);
                 s++; // increase current size
@@ -81,6 +82,10 @@ public class KruskalAlgo {
         edges[5] = new Edge(2, 4, 12);
         edges[6] = new Edge(3, 4, 15);
 
-        System.out.print(kruskal(edges));
+        System.out.println("Edges: ");
+        System.out.print("Minumum Cost Spanning Tree: " + kruskal(edges));
+        // Time Complexity
+        // Sorting: BigO(ElogE) + Initializing: BigO(E) + Traversing & Find and
+        // Union(by rank and path compression) BigO(V)
     }
 }
