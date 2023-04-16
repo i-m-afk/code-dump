@@ -25,8 +25,7 @@ public class KruskalAlgo {
     static int find(int x) {
         if (parent[x] == x)
             return x;
-        parent[x] = find(parent[x]);
-        return parent[x];
+        return parent[x] = find(parent[x]);
     }
 
     static void union(int x, int y) {
