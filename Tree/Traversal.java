@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Traversal extends Node {
     Traversal(int val) {
         super(val);
@@ -31,6 +34,21 @@ public class Traversal extends Node {
         preOrder(node.right);
     }
 
+    private static void levelOrder(Node node) {
+        Queue<Node> que = new LinkedList<>();
+        que.offer(node);
+        while (!que.isEmpty()) {
+            Node x = que.poll();
+            if (x.left != null) {
+                que.offer(x.left);
+            }
+            if (x.right != null) {
+                que.offer(x.right);
+            }
+            System.out.print(x.val + " ");
+        }
+    }
+
     public static void main(String[] args) {
         Node root = new Node(30);
         root.left = new Node(40);
@@ -43,5 +61,7 @@ public class Traversal extends Node {
         postOrder(root);
         System.out.println();
         inOrder(root);
+        System.out.println();
+        levelOrder(root);
     }
 }
