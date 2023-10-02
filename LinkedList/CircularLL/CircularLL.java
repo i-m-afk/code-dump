@@ -8,6 +8,10 @@ class Node {
         this.data = data;
         next = null;
     }
+
+    Node() {
+        next = null;
+    }
 }
 /*
  * Structure of Singly CLL is same as Singly Linked List
@@ -35,10 +39,11 @@ public class CircularLL {
         head.next.next.next = new Node(15);
         head.next.next.next.next = head; // this makes ll circular
 
+        Node current = head;
         int k = 0; // to avoid infinte loop
-        while (head != null && k++ < 10) {
-            System.out.print(head.data + "--->");
-            head = head.next;
+        while (current != null && k++ < 10) {
+            System.out.print(current.data + "--->");
+            current = current.next;
         }
     }
 
@@ -47,6 +52,10 @@ public class CircularLL {
      * https://practice.geeksforgeeks.org/problems/circular-linked-list-traversal/1
      */
     void printList(Node head) {
+        if (head == null) {
+            System.out.println("linked list is empty");
+            return;
+        }
         Node temp = head;
         do {
             System.out.print(temp.data + " ");
@@ -54,8 +63,85 @@ public class CircularLL {
         } while (temp != head);
     }
 
+    private Node insertNodeAtEnd(Node head, int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            newNode.next = newNode;
+            return newNode;
+        }
+        Node current = head;
+        while (current.next != head) {
+            current = current.next;
+        }
+        current.next = newNode; // change old last node point to newNode
+        newNode.next = head; // point newNode to head
+        return head;
+    }
+
+    private Node insertNodeAtFront(Node head, int data) {
+        Node newHead = new Node(data);
+        if (head == null) {
+            newHead.next = newHead;
+            return newHead;
+        }
+        Node current = head;
+        while (current.next != head) {
+            current = current.next;
+        }
+        current.next = newHead;
+        newHead.next = head;
+        return newHead;
+    }
+
+    // delete head
+    private Node deleteHead(Node head) {
+        if (head == null) {
+            throw new Error("Can't perform delete operation on null list.");
+        }
+        if (head == head.next)
+            return null;
+        Node current = head;
+        while (current.next != head)
+            current = current.next;
+        current.next = head.next;
+        return head.next;
+    }
+
+    // delete kth node
+    private Node deleteKthNode(Node head, int k) {
+        if (head == null)
+            throw new NullPointerException("null list.");
+        if (k <= 0)
+            throw new IllegalArgumentException("Invalid value of k.");
+        if (k == 1) {
+            return deleteHead(head);
+        }
+        Node current = head;
+        for (int i = 0; i < k - 2; i++) {
+            current = current.next;
+        }
+        current.next = current.next.next;
+        return head;
+    }
+
+    // circular doubly linked list
+
     public static void main(String[] args) {
-        CircularLL cll = new CircularLL();
+        // CircularLL cll = new CircularLL();
         // cll.naiveInit();
+        Node head = null;
+        CircularLL obj = new CircularLL();
+        head = obj.insertNodeAtEnd(head, 12);
+        head = obj.insertNodeAtEnd(head, 213);
+        head = obj.insertNodeAtEnd(head, 23);
+
+        obj.printList(head);
+        System.out.println();
+        // head = obj.deleteHead(head);
+        // head = obj.deleteHead(head);
+        // head = obj.deleteHead(head);
+        head = obj.deleteKthNode(head, -1);
+
+        obj.printList(head);
     }
 }

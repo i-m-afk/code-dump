@@ -1,4 +1,5 @@
-
+.idea
 *.class
-Sliding_Window/tempCodeRunnerFile.java
-.vscode/settings.json
+*tempCodeRunnerFile.java
+.vscode
+code-dump.iml
