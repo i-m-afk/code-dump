@@ -214,7 +214,7 @@ public class Sort {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 30, 50, 60, 50, 100 };
+        int[] arr = { 5, 3, 8, 4, 2, 7, 1, 10 };
         // bubbleSort(arr, arr.length);
         // insertionSort(arr);
         // merge(arr, 0, 3, 6);
@@ -224,7 +224,7 @@ public class Sort {
         // int[] b = { 2, 8, 9, 10, 15 };
         // System.out.println(findUnion(a, b, a.length, b.length));
         // QuickSort.partition(arr, 0, arr.length - 1, 2);
-        System.out.println(QuickSort.lomutoPartition(arr, 0, arr.length - 1));
+        System.out.println(QuickSort.hoarePartition(arr, 0, arr.length - 1));
     }
 
     public void sortEvenOdd(Integer[] arr) {
@@ -283,57 +283,4 @@ class Solution {
         mergeSort(arr, 0, N - 1);
         return countInversion;
     }
-}
-
-class QuickSort {
-
-    // naive
-    static void partition(int[] nums, int low, int high, int p) {
-        // 4 , 1, 33, 0, 99, 6
-        // --
-        int[] temp = new int[nums.length];
-        int index = 0;
-        for (int i = low; i <= high; i++) {
-            if (nums[i] <= nums[p]) {
-                temp[index] = nums[i];
-                index++;
-            }
-        }
-        for (int i = low; i <= high; i++) {
-            if (nums[i] > nums[p]) {
-                temp[index] = nums[i];
-                index++;
-            }
-        }
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = temp[i];
-        }
-        System.out.println(Arrays.toString(nums));
-    }
-
-    static void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-
-    // Lomuto Partition
-    // if pivot is always a last element
-    static int lomutoPartition(int[] nums, int low, int high) {
-        // maintain window of smaller and greater element
-        // | smaller elements ... || .. larger_element (>=) | pivot
-        // after complete iteration swap nums[i+1] with nums[pivot]
-        int pivot = nums[high]; // last element pivot
-        int i = low - 1;
-        for (int j = low; j <= high - 1; j++) {
-            if (nums[j] < pivot) {
-                i++;
-                swap(nums, i, j);
-            }
-        }
-        swap(nums, high, i + 1);
-        System.out.println(Arrays.toString(nums));
-        return (i + 1);
-    }
-
 }
