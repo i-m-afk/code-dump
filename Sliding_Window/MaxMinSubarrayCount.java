@@ -1,5 +1,5 @@
 /*
- * array [1, 3, 1, 2, 4,1, 2] and want to get number of diffrent subarrays whoes
+ * array [1, 3, 1, 2, 4,1, 2] and want to get number of diffrent subarrays who's
  * max and min element difference is less than 2
  */
 public class MaxMinSubarrayCount {
@@ -24,3 +24,8 @@ public class MaxMinSubarrayCount {
     }
 
 }
+
+
+
+
+

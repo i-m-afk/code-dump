@@ -49,6 +49,53 @@ public class Traversal extends Node {
         }
     }
 
+    private static void levelOrderLinebyLine(Node node) {
+        if (node == null)
+            return;
+        Queue<Node> q = new LinkedList<>();
+        q.offer(node);
+        q.offer(null);
+        while (!q.isEmpty()) {
+            Node current = q.poll();
+            // if reached current level end, there will be a null node marker
+            if (current == null) {
+                System.out.println();
+                if (!q.isEmpty())
+                    q.add(null);
+                continue;
+            }
+            System.out.print(current.val + " ");
+            if (current.left != null) {
+                q.add(current.left);
+            }
+            if (current.right != null) {
+                q.add(current.right);
+            }
+        }
+    }
+
+    // Time : O(N) Space : O(N)
+    private static void levelOrderLinebyLineOtherway(Node node) {
+        if (node == null)
+            return;
+        Queue<Node> q = new LinkedList<>();
+        q.offer(node);
+        while (!q.isEmpty()) {
+            int length = q.size();
+            for (int i = 0; i < length; i++) {
+                Node current = q.poll();
+                System.out.print(current.val + " ");
+                if (current.left != null) {
+                    q.add(current.left);
+                }
+                if (current.right != null) {
+                    q.add(current.right);
+                }
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         Node root = new Node(30);
         root.left = new Node(40);
@@ -63,5 +110,9 @@ public class Traversal extends Node {
         inOrder(root);
         System.out.println();
         levelOrder(root);
+        System.out.println();
+        levelOrderLinebyLine(root);
+        System.out.println();
+        levelOrderLinebyLineOtherway(root);
     }
 }
